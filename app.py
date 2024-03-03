@@ -1,34 +1,28 @@
-from flask import Flask,render_template,redirect,url_for,request,flash
-app =Flask (__name__)
-app.secret_key="Khushi@129"
+from flask import Flask,redirect,render_template,request,url_for
+app=Flask(__name__)
 recipes=[]
-@app.route("/")
-def home():
-    return render_template("name.html")
-@app.route("/add",methods=["POST","GET"])
-def add():
+@app.route('/')
+def index():
+    return render_template('index.html',recipes=recipes)
+@app.route('/add',methods=['GET','POST'])
+def add_recipe():
     if request.method=="POST":
-        name=request.form["nm"]
-        ingredients=request.form["ingredients"]
-        instructions=request.form["instructions"]
-        data={"name": name, "ingredients": ingredients, "instructions": instructions}
-        recipes.append(data)
-    return render_template("addrecipe.html")
-@app.route("/display",methods=["POST","GET"])
-def dis():
-    flash("Recipe"+str(request.form(['nm']))+"is sucessfully added!")
-    return render_template("addrecipe.html")
-@app.route("/delete",methods=["DELETE"])
-def delete():
-    if request.method=="POST":
-        name = input("Enter recipe name to delete: ")
-    for recipe in recipes:
-        if recipe["name"] == name:
-            recipes.remove(recipe)
-            print(f"Recipe '{name}' deleted successfully!")
-            break
-    else:
-        print(f"Recipe '{name}' not found.")
-
-if __name__ == "__main__":
+        recipe_name=request.form['name']
+        ingredients=request.form['ingredients']
+        instructions=request.form['instructions']
+        recipes.append({'name':recipe_name,'ingredients':ingredients,'instructions':instructions})
+        return redirect(url_for('index'))
+    return render_template('add.html')
+@app.route('/delete/<int:index>')
+def delete_recipe(index):
+    del recipes[index]
+    return redirect(url_for('index'))
+@app.route('/search',methods=['GET','POST'])
+def search_recipe():
+    if request.method=='POST':
+        query=request.form['query']
+        results=[recipe for recipe in recipes if query.lower() in recipe['name'].lower()]
+        return render_template('search.html',recipes=results,query=query)
+    return render_template('search.html')
+if __name__=='__main__':
     app.run(debug=True)

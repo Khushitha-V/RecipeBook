@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<style>
-    body{
-        color: blueviolet;;
-    }
-</style>
-<body align="center">
-    <label style="font-size: 30px;" for="search">Search Here:</label>
-    <input type="text" name="sec" id="search">
+<body>
+    <h1>Search Recipe</h1>
+    <form action ="{{url_for('search_recipe')}}" method="post">
+        <label for="query">Search:</label>
+        <input type="text" id="query" name="query" required><br>
+        <input type="submit" value="SEARCH">
+    </form>
+    <h2>Here is your search "{{ query }}"</h2>
+    <u1>
+        {% for recipe in recipes %}
+        <li>
+            <strong> {{ recipe.name }}</strong>
+            <p>Ingredients: {{recipe.ingredients}}</p>
+            <p>Instructions: {{recipe.instructions}}</p>
+        </li>
+        {% endfor %}
+    </u1>
 </body>
 </html>

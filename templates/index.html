@@ -1,8 +1,27 @@
-{% block title %}Login Page{% endblock %}
-{% block content %}
-<form action="#" method="post">
-    <p>Name:</p>
-    <p><input type="text" name="nm"/></p>
-    <p><input type="submit" value="submit"/></p>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Book</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-5">Recipe Book</h1>
+        <div class="row">
+            {% for recipe in recipes %}
+            <div class="col-md-6">
+                <div class="recipe-card p-4 mb-4">
+                    <h2 class="mb-3">{{recipe.name}}</h2>
+                    <p><strong>Ingredients:</strong>{{recipe.ingredients}}</p>
+                    <p><strong>Instructions:</strong>{{recipe.instructions}}</p>
+                    <a class="delete-btn" href="{{url_for('delete_recipe', index=loop.index0)}}">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="btn btn-primary" href="{{url_for('add_recipe')}}">Add Recipe</a>
+        <a class="btn btn-primary" href="{{url_for('search_recipe')}}">Search Recipe</a>
+    </div>
+</body>
+</html>
