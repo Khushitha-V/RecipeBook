@@ -10,6 +10,9 @@
     <div class="container">
         <div class="left-column">
             <h1>Add a New Recipe</h1>
+            {% for message in get_flashed_messages()%}
+                <p>{{message}}</p>
+            {% endfor %}
             <form action="#" method="post">
                 <label for="1">Name:</label>
                 <input type="text" name="nm" id="1"><br><br>
@@ -17,10 +20,7 @@
                 <input type="text" name="ingredients" id="2"><br><br>
                 <label for="3">instructions:</label>
                 <input type="text" name="instructions" id="3"><br><br>
-                <button type="submit">Submit Recipe</button><br><br>
-                {% if data is defined %}
-            <p>Recipe Added !! {{data['name']}}</p>
-            {% endif %}  
+                <button type="submit">Submit Recipe</button><br><br> 
             </form>
         </div>
         <div class="right-column">
