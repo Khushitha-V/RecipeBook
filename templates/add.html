@@ -1,9 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Recipe</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add New Recipe</title>
+        <style>
+            body {
+    color:blueviolet;
+    font-size: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color:black;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color:blueviolet;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color:lavenderblush;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    margin-bottom: 5px;
+    color:blueviolet;
+}
+
+input[type="text"],
+textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid lavenderblush;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+input[type="submit"] {
+    background-color:blueviolet;
+    color:lavenderblush;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #4a092f;
+}
+        </style>
 </head>
 <body>
     <div class="container">
@@ -14,7 +76,7 @@
             <label for="ingredients">Ingredients:</label>
             <textarea id="ingredients" name="ingredients" required></textarea>
             <label for="instructions">Instructions:</label>
-            <input type="text" id="instructions" name="instructions" required/>
+            <textarea id="instructions" name="instructions" required></textarea>
             <input type="submit" value="ADDRECIPE">
         </form>
     </div>
